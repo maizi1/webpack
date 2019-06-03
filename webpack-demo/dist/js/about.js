@@ -63,7 +63,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "18846c266f694174f6c1";
+/******/ 	var hotCurrentHash = "30a3294fcf2a8d712d53";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -793,14 +793,27 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./src/js/base.js":
+/*!************************!*\
+  !*** ./src/js/base.js ***!
+  \************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (function (x) {\r\n    alert('test' + x);\r\n});\n\n//# sourceURL=webpack:///./src/js/base.js?");
+
+/***/ }),
+
 /***/ "./src/view/about/about.js":
 /*!*********************************!*\
   !*** ./src/view/about/about.js ***!
   \*********************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-eval("console.log('about.jsdfgdg')\n\n//# sourceURL=webpack:///./src/view/about/about.js?");
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _js_base_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../js/base.js */ \"./src/js/base.js\");\n\r\nObject(_js_base_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"])('hi-word')\r\nconsole.log('about.jsdfgdg')\n\n//# sourceURL=webpack:///./src/view/about/about.js?");
 
 /***/ })
 

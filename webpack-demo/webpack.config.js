@@ -5,12 +5,12 @@ const webpack = require('webpack');
 
 const glob = require('glob');
 
-const HTMLReg = /\/([w-]+)(?=.html)/;
-const JSReg = /\/([w-]+)(?=.js)/;
+const HTMLReg = /[^/]*(?=.html)/;
+const JSReg = /[^/]*(?=.js)/;
 
 const html = glob.sync('src/view/**/*.html').map(path => {
-    let name = path.match(HTMLReg)[1]; // 从路径中提取出文件名
-    return new HTMLWebpackPlugin({
+    let name = path.match(HTMLReg)[0]; // 从路径中提取出文件名
+    return new HtmlWebpackPlugin({
         template: path,
         filename: name + '.html',
         chunks: [name],
@@ -18,7 +18,7 @@ const html = glob.sync('src/view/**/*.html').map(path => {
 });
 
 const entries = glob.sync('src/view/**/*.js').reduce((prev, next) => {
-    let name = next.match(JSReg)[1];
+    let name = next.match(JSReg)[0];
     prev[name] = './' + next;
     return prev;
 }, {});
@@ -29,7 +29,7 @@ module.exports = {
     entry: entries,
     // 输出路径 及 文件名 通过 [name] 访问到 entry 中对应路径的属性名
     output: {
-        filename: 'js/[name].[hash].js',
+        filename: 'js/[name].js',
         path: path.resolve(__dirname, 'dist'),
     },
     // optimizanpm install --save-dev webpack-mergetion: {
@@ -40,7 +40,10 @@ module.exports = {
         contentBase: './dist',
         hot: true,
     },
-    plugins: html,
+    plugins: [
+        new CleanWebpackPlugin(),
+        new webpack.HotModuleReplacementPlugin(),
+    ].concat(html),
     module: {
         // 文件打包规则
         rules: [
